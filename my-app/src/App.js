@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import DataScreen from "./component/DataScreen";
 import AiScreen from "./component/AiScreen";
 import {
@@ -28,16 +28,15 @@ export default function App() {
 
   const onClick = (e) => {
     console.log("click ", e.key);
-    history.push("/ai-screen");
+    history.push(e.key);
   };
 
   return (
-    <Router>
-      <div className="flex">
-        {/* <nav>
+    <div className="flex">
+      {/* <nav>
           <ul>
             <li>
-              <Link to="/">DataScreen</Link>
+              <Link to="/">DataScreen</Link>  
             </li>
             <li>
               <Link to="/ai-screen">AiScreen</Link>
@@ -45,18 +44,19 @@ export default function App() {
           </ul>
         </nav> */}
 
-        <Menu
-          onClick={onClick}
-          style={{
-            width: 256,
-            height: "100vh",
-          }}
-          defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
-          mode="inline"
-          items={items}
-        />
-
+      <Menu
+        onClick={onClick}
+        style={{
+          width: "15vw",
+          flexDirection: "column",
+          flex: 1,
+        }}
+        defaultSelectedKeys={["1"]}
+        defaultOpenKeys={["sub1"]}
+        mode="inline"
+        items={items}
+      />
+      <div className="w-[85vw]">
         <Switch>
           <Route path="/ai-screen">
             <AiScreen />
@@ -66,6 +66,6 @@ export default function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
+    </div>
   );
 }
